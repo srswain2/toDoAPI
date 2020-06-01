@@ -1,8 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-var cors = require('cors')
+var cors = require('cors');
+const redis = require('redis');
 
 const app = express();
+const client = redis.createClient();
+client.on('error', (err) => {
+    console.log("Error " + err)
+});
 app.use(cors());
 
 // parse requests of content-type - application/json
